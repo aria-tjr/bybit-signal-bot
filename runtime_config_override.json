@@ -1,0 +1,27 @@
+{
+  "config_type": "relaxed_scaling",
+  "applied_at": "2025-06-10T22:39:26.502734",
+  "overrides": {
+    "min_volatility_threshold": 5.0,
+    "min_volume_threshold": 1500000,
+    "max_pairs_for_analysis": 25,
+    "stage1_max_pairs": 60,
+    "stage2_max_pairs": 20,
+    "stage3_max_pairs": 8,
+    "quick_scan_min_score": 0.2,
+    "detailed_min_signal_strength": 1.2,
+    "detailed_min_confluence_points": 1,
+    "detailed_min_trend_alignment": 0.4,
+    "final_min_confidence": 0.45,
+    "final_min_quality_score": 55,
+    "rsi_oversold_level": 35,
+    "rsi_overbought_level": 65,
+    "volume_spike_threshold": 1.3,
+    "volume_trend_periods": 10
+  },
+  "expected_improvements": {
+    "signal_generation": "3-5x more signals",
+    "market_coverage": "25% more pairs analyzed",
+    "opportunity_detection": "Significantly improved"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "backtest_summary": {
+    "period": "30 days",
+    "total_symbols": 8,
+    "total_signals_generated": 3308,
+    "total_trades_executed": 3308,
+    "initial_capital": 10000.0,
+    "final_capital": 11.58,
+    "net_profit": -9988.42,
+    "total_return_pct": -99.88
+  },
+  "performance_metrics": {
+    "win_rate": 30.1,
+    "avg_win_pct": 126.3,
+    "avg_loss_pct": -56.64,
+    "profit_factor": 1.0,
+    "max_drawdown_pct": 100.0,
+    "sharpe_ratio": -0.02,
+    "total_fees_paid": 4659.6
+  },
+  "trading_patterns": {
+    "direction_analysis": {
+      "LONG": {
+        "trades": 335,
+        "win_rate": 24.776119402985074
+      },
+      "SHORT": {
+        "trades": 2973,
+        "win_rate": 30.70972082071981
+      }
+    },
+    "avg_trade_duration_hours": 11.9,
+    "avg_leverage_used": 14.1,
+    "avg_confidence": 0.581
+  },
+  "symbol_performance": {},
+  "risk_analysis": {
+    "volatility_daily_pct": 478.23,
+    "best_day_pct": 4981.6,
+    "worst_day_pct": -2067.55,
+    "profitable_days": 69,
+    "total_trading_days": 176
+  }
+}
