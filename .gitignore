@@ -68,7 +68,7 @@ coverage.xml
 *.ipynb_checkpoints
 
 # ---- Data / artifacts ----
-data/
+/data/
 data_cache/
 historical_data/
 logs/
