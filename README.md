@@ -26,13 +26,13 @@ A real-time cryptocurrency trading signal bot that analyzes multiple timeframes 
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/crypto-signal-bot.git
-cd crypto-signal-bot
+git clone https://github.com/aria-tjr/bybit-signal-bot.git
+cd bybit-signal-bot
 ```
 
 2. **Create environment file**
 ```bash
-cp .env.example .env
+cp env.example .env
 ```
 
 3. **Configure environment variables**
@@ -133,7 +133,7 @@ crypto-signal-bot/
 ### Trading Logic
 1. **Trend Filter**: Ensures alignment with major trend
 2. **Entry Conditions**: Multiple confirmations required
-3. **Risk Management**: ATR-based stop loss
+3. **Risk Management**: stop loss placed just inside the estimated liquidation price for the chosen leverage (see `_calculate_trade_levels` in `app/logic/rules.py`) — very aggressive
 4. **Profit Targets**: Three levels based on threshold percentage
 
 ## 🤖 Machine Learning Model
@@ -141,7 +141,22 @@ crypto-signal-bot/
 - **Algorithm**: Gradient Boosting Classifier
 - **Target**: Probability of hitting TP2 within 6 hours
 - **Features**: 11 technical and market microstructure features
-- **Performance**: >60% win rate in backtesting
+- **Performance**: no verified figure. The earlier ">60% win rate" claim came from `comprehensive_30day_backtest.py`, which generates synthetic random price data, so it has been removed.
+
+## 📉 Independent backtest (rules core only)
+
+An independent walk-forward test of `TradingRules.analyze_symbol` (5m/15m/1h/4h, TP2 target, repo default stops; ML confidence filter and signal processor not included; `app/data` stubbed with 100x max leverage) on Binance BTCUSDT/ETHUSDT futures data, Apr–Sep 2026, 1x, 0.04% fee per side:
+
+| Symbol | Trades | Win rate | Net return | Max DD |
+|---|---|---|---|---|
+| BTCUSDT | 344 | 75.3% | −19.3% | −30.7% |
+| ETHUSDT | 529 | 73.5% | −47.1% | −52.1% |
+
+High win rate, but the small 0.8% target against a ~2.4% stop loses money after fees. Funding and slippage were not modelled.
+
+## ⚠️ Known issue: `app/data/` is missing
+
+`app/logic/rules.py`, `app/main.py` and several services import `app.data` (e.g. `app.data.rest.rest_client`), but this package is not in the repository: the `.gitignore` rule `data/` also matched `app/data/`. **The bot does not run from a fresh clone until that module is restored.** The `.gitignore` rule is now anchored to the repository root (`/data/`) so the module can be committed.
 
 ## 🔧 API Endpoints
 
